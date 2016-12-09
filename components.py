@@ -65,8 +65,11 @@ def get_key(component, key_id):
             if response.status_code == 200:
                 # We should have the expected Json response
                 keys = response.json()
-                if key_id in keys:
-                    public_keys[component][key_id] = keys[key_id]
+                for key in keys:
+                    if "key_id" in key and "pem" in key and key["key_id"] == key_id:
+                        public_keys[component][key_id] = key["pem"]
+                    else:
+                        print("Discounted " + repr(key) + " for key id " + repr(key_id))
             else:
                 print("Unexpected response from " + repr(component) + ": " + repr(response.status_code))
 

@@ -24,7 +24,7 @@ def keys():
 
 @app.route('/chat')
 def chat():
-    return "I'm going to try to talk to " + repr(components.components)
+    return "I'm going to try to talk to " + repr(components.get_key(components.SDC_LION, 2))
 
 
 if __name__ == '__main__':
