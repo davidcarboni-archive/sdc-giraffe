@@ -81,9 +81,3 @@ def get_key(component, key_id):
         print("Component " + repr(component) + " is not a recognised client.")
 
     return key
-
-
-if __name__ == '__main__':
-    print(components)
-    print(urls)
-    print(get_key(SDC_LOGIN_USER, 2))
