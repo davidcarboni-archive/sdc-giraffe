@@ -19,6 +19,11 @@ def info():
 
 @app.route('/keys')
 def keys():
+    key_id = request.args.get("key_id")
+    if key_id:
+        print("Getting key ID " + repr(key_id))
+        return jsonify(public_keys.get_key(key_id))
+    print("Listing all keys")
     return jsonify(public_keys.list_keys())
 
 
@@ -50,4 +55,5 @@ if __name__ == '__main__':
     generate_key()
 
     port = int(os.environ.get('PORT', 5002))
+    print("Running on port " + repr(port))
     app.run(debug=True, host='0.0.0.0', port=port, threaded=True)
